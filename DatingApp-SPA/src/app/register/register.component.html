@@ -194,7 +194,7 @@
     <div
       class="invalid-feedback"
       *ngIf="
-        registerForm.hasError('required') &&
+        registerForm.hasError('mismatch') &&
         registerForm.get('confirmPassword').touched
       "
     >
