@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { User } from "../../_models/user";
-import { UserService } from "../../_services/user.service";
-import { AlertifyjsService } from "../../_services/alertifyjs.service";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../_models/user';
+import { UserService } from '../../_services/user.service';
+import { AlertifyjsService } from '../../_services/alertifyjs.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "app-member-list",
-  templateUrl: "./member-list.component.html",
-  styleUrls: ["./member-list.component.css"]
+  selector: 'app-member-list',
+  templateUrl: './member-list.component.html',
+  styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
   users: User[];
@@ -18,9 +18,8 @@ export class MemberListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.users = data["users"];
+    this.route.data.subscribe((data) => {
+      this.users = data['users'];
     });
   }
-
 }
