@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpInterceptor,
-  HttpErrorResponse,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http';
+import { HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -15,7 +11,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     next: import('@angular/common/http').HttpHandler
   ): import('rxjs').Observable<import('@angular/common/http').HttpEvent<any>> {
     return next.handle(req).pipe(
-      catchError(error => {
+      catchError((error) => {
         if (error.status === 401) {
           return throwError(error.statusText);
         }

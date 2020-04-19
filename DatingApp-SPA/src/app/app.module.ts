@@ -42,6 +42,8 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { DatePipe } from '@angular/common';
+import { UtcPipe } from './_pipes/utc.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -66,7 +68,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MemberEditComponent,
     PhotoEditorComponent,
     TimeAgoPipe,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    UtcPipe
   ],
   imports: [
     BrowserModule,
@@ -100,6 +103,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     PreventUnsavedChanges,
     ListsResolver,
     MessagesResolver,
+    DatePipe,
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
   ],
   bootstrap: [AppComponent]

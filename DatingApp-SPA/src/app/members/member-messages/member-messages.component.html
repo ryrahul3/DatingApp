@@ -20,7 +20,7 @@
               <strong class="primary-font">{{ message.senderKnownAs }}</strong>
               <small class="text-muted float-right">
                 <span class="fa fa-clock-o">{{
-                  message.messageSent | timeAgo
+                  message.messageSent | utc | timeAgo
                 }}</span>
               </small>
             </div>
@@ -40,13 +40,13 @@
             <div class="header">
               <small class="text-muted">
                 <span class="fa fa-clock-o">{{
-                  message.messageSent | timeAgo
+                  message.messageSent | utc | timeAgo
                 }}</span>
                 <span *ngIf="!message.isRead" class="text-danger"
                   >(unread)</span
                 >
                 <span *ngIf="message.isRead" class="text-success"
-                  >(Read {{ message.dateRead | timeAgo }})</span
+                  >(Read {{ message.dateRead | utc | timeAgo }})</span
                 >
               </small>
               <strong class="primary-font float-right">{{

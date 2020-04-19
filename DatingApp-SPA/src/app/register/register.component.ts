@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyjsService } from '../_services/alertifyjs.service';
-import {
-  FormGroup,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
@@ -20,12 +16,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
-  constructor(
-    private auth: AuthService,
-    private alert: AlertifyjsService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService, private alert: AlertifyjsService, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.bsConfig = {
@@ -43,23 +34,14 @@ export class RegisterComponent implements OnInit {
         dateOfBirth: ['', Validators.required],
         city: ['', Validators.required],
         country: ['', Validators.required],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(4),
-            Validators.maxLength(8)
-          ]
-        ],
+        password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
         confirmPassword: ['', Validators.required]
       },
       { validator: this.passwordMatchValidator }
     );
   }
   passwordMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('confirmPassword').value
-      ? null
-      : { mismatch: true };
+    return g.get('password').value === g.get('confirmPassword').value ? null : { mismatch: true };
   }
   register() {
     if (this.registerForm.valid) {

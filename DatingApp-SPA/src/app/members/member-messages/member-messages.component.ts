@@ -4,6 +4,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyjsService } from 'src/app/_services/alertifyjs.service';
 import { tap } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-member-messages',
@@ -17,7 +18,8 @@ export class MemberMessagesComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private alertify: AlertifyjsService
+    private alertify: AlertifyjsService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class MemberMessagesComponent implements OnInit {
       .getMessageThread(this.authService.decodedToken.nameid, this.recipientId)
       .pipe(
         tap((messeges) => {
+          // tslint:disable-next-line: prefer-for-of
           for (let i = 0; i < messeges.length; i++) {
             if (
               messeges[i].isRead === false &&
@@ -57,6 +60,7 @@ export class MemberMessagesComponent implements OnInit {
       .subscribe(
         (message: Message) => {
           this.messages.unshift(message);
+          console.log(this.messages);
           this.newMessage.content = '';
         },
         (error) => {
